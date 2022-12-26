@@ -6,10 +6,13 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,7 +31,17 @@ jobs:
         run: echo Hello, world!
       
       - name: pip install libraries
-        run: pip install mkdocs
+        run: |
+          pip install mkdocs
+          pip install "mkdocstrings[python]"
+          pip install mkdocs-material
+      
+      - name: generate mkdocs
+        run: mkdocs build
+      
+      - name: deploy mkdocs site to github pages
+        run: mkdocs gh-deploy --force
+
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
