@@ -36,9 +36,6 @@ jobs:
           pip install "mkdocstrings[python]"
           pip install mkdocs-material
       
-      - name: generate mkdocs
-        run: mkdocs build
-      
       - name: deploy mkdocs site to github pages
         run: mkdocs gh-deploy --force
 
