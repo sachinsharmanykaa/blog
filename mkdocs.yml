@@ -1,0 +1,10 @@
+site_name: Blog
+nav:
+  - "Calculations": calculations.md
+# mkdocs.yml
+theme:
+  name: "material"
+
+plugins:
+- search
+- mkdocstrings
